@@ -37,9 +37,9 @@ def load_graphics(path, accept=('.jpg', '.png', '.jif', '.bmp')):
     return graphics
 
 
-def get_image(sheet, x, y, width, heigth, colorkey, scale):
-    image = pygame.Surface((width, heigth))
-    image.blit(sheet, (0, 0), (x, y, width, heigth))
+def get_image(sheet, x, y, width, height, colorkey, scale):
+    image = pygame.Surface((width, height))
+    image.blit(sheet, (0, 0), (x, y, width, height))
     image.set_colorkey(colorkey)
-    image = pygame.transform.scale(image, (int(width * scale), int(heigth * scale)))
+    image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
     return image
