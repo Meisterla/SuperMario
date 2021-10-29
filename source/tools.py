@@ -9,7 +9,7 @@ class Game:
         self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
 
-    def run(self):
+    def run(self, state):
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -18,7 +18,9 @@ class Game:
                     self.keys = pygame.key.get_pressed()
                 elif event.type == pygame.KEYUP:
                     self.keys = pygame.key.get_pressed()
-            self.screen.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+
+            state.update(self.screen)
+
             pygame.display.update()
             self.clock.tick(60)
 
