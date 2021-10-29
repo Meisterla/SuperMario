@@ -1,11 +1,11 @@
 import pygame
 import random
+import os
 
 
 class Game:
     def __init__(self):
-        pygame.init()
-        pygame.display.set_mode((800, 600))
+
         self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
 
@@ -21,3 +21,25 @@ class Game:
             self.screen.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
             pygame.display.update()
             self.clock.tick(60)
+
+
+def load_graphics(path, accept=('.jpg', '.png', '.jif', '.bmp')):
+    graphics = {}
+    for pic in os.listdir(path):
+        name, ext = os.path.splitext(pic)
+        if ext.lower() in accept:
+            img = pygame.image.load(os.path.join(path, pic))
+            if img.get_alpha():
+                img = img.convert_alpha()
+            else:
+                img = img.convert()
+            graphics[name] = img
+    return graphics
+
+
+def get_image(sheet, x, y, width, heigth, colorkey, scale):
+    image = pygame.Surface((width, heigth))
+    image.blit(sheet, (0, 0), (x, y, width, heigth))
+    image.set_colorkey(colorkey)
+    image = pygame.transform.scale(image, (int(width * scale), int(heigth * scale)))
+    return image

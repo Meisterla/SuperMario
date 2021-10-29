@@ -2,11 +2,12 @@
 
 import pygame
 from source import tools
+from source import setup
 
 
 def main():
     game = tools.Game()
-    game.run
+    game.run()
 
 
 if __name__ == '__main__':
