@@ -1,6 +1,5 @@
 # 入口
 
-
 import pygame
 from source import tools
 
